@@ -4,7 +4,7 @@ import picamera
 import pygame
 from pygame.locals import *
 
-debug = 1
+debug = 0
 WIDTH = 480
 HEIGHT = 360
 margin = 50*debug
