@@ -4,25 +4,12 @@ import picamera
 import pygame
 from pygame.locals import *
 
-<<<<<<< HEAD
 WIDTH = 480
 HEIGHT = 360
 step = 16
 
 pygame.init()
 DISPLAYSURF = pygame.display.set_mode((WIDTH, HEIGHT))
-=======
-debug = 0
-WIDTH = 480
-HEIGHT = 360
-margin = 50*debug
-step = 2
-dimw = int(WIDTH/step)
-dimh= int(HEIGHT/step)
-
-pygame.init()
-DISPLAYSURF = pygame.display.set_mode((WIDTH+margin, HEIGHT+margin))
->>>>>>> 488f955fdd139fc0be7293d052e9a4fbfcf7601e
 pygame.display.set_caption('Red Object Tracking')
 camera = picamera.PiCamera()
 camera.resolution = (WIDTH,HEIGHT)
