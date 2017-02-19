@@ -4,17 +4,17 @@ import picamera
 import pygame
 from pygame.locals import *
 
-debug = 1
+debug = 0
 WIDTH = 480
 HEIGHT = 360
 margin = 50*debug
-step = 2
+step = 8
 dimw = int(WIDTH/step)
-dimwh= int(HEIGHT/step)
+dimh= int(HEIGHT/step)
 
 pygame.init()
 DISPLAYSURF = pygame.display.set_mode((WIDTH+margin, HEIGHT+margin))
-pygame.display.set_mode('Red Object Tracking')
+pygame.display.set_caption('Red Object Tracking')
 camera = picamera.PiCamera()
 camera.resolution = (WIDTH,HEIGHT)
 stream = io.BytesIO()
@@ -31,7 +31,7 @@ while endflag == 0:
 	stream.seek(0)
 	camera.capture(stream,'rgb')
 	sumx = [0] * dimw
-	sumy = [0] * dimwh
+	sumy = [0] * dimh
 	for y in range(0,HEIGHT,step):
 		for x in range(0,WIDTH,step):
 			stream.seek((x+(y*WIDTH))*3)
@@ -42,7 +42,7 @@ while endflag == 0:
 			if rv < 0 : rv = 0
 			sumx[int(x/step)] += rv
 			sumy[int(y/step)] += rv
-			pygame.draw.rect(DISPLAYSURF ,(r,g,b) ,(x,y,step,step))
+			pygame.draw.rect(DISPLAYSURF ,(rv,rv,rv) ,(x,y,step,step))
 
 	tx = step * (sumx.index(max(sumx)))
 	ty = step * (sumy.index(max(sumy)))
